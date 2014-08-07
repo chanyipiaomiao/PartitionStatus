@@ -14,6 +14,9 @@ public class GetPartitionStatus {
         //读取配置文件信息
         Properties properties = GetConfigure.getConfigureFromPropertiesFile();
 
+        //生成Excel或者HTML
+        int excel_html = Integer.parseInt(properties.getProperty("excel_html"));
+
         //从文件中读取IP地址
         GetServerIP.setIp_file(properties.getProperty("ip_file"));
         ArrayList<String> ip_list = GetServerIP.getServerIPFromFile();
@@ -50,8 +53,15 @@ public class GetPartitionStatus {
             }
 
             if (ip_list_size == result_list.size()){
-                WriteResult writeResult = new ResultToHtml();
-                writeResult.writeResult(result_list);
+                if (excel_html == 0){
+                    WriteResult writeResult = new ResultToHtml();
+                    writeResult.writeResult(result_list);
+                } else if (excel_html == 1){
+                    WriteResult writeResult = new ResultToExcel();
+                    writeResult.writeResult(result_list);
+                } else {
+                    System.out.println("你的配置有误吧!!!");
+                }
                 break;
             } else {
                 if (exec_count > 3){

@@ -32,11 +32,12 @@ class ResultToExcel implements WriteResult {
     /**
      * 把得到到ArrayList写入到Excel文件中去
      * */
-    public void writeResult(ArrayList<String> result_list){
+    public String writeResult(ArrayList<String> result_list){
 
         String date = FunctionKit.getDate("yyyy-MM-dd_HH:mm:ss");
         String file_date = date.replaceAll(":","");
-        File file = new File(result_file + file_date + ".xls");
+        String file_name = result_file + file_date + ".xls";
+        File file = new File(file_name);
         String title = date + " " + content_title;
 
         try {
@@ -111,5 +112,6 @@ class ResultToExcel implements WriteResult {
         } catch (NullPointerException e){
             e.printStackTrace();
         }
+        return file_name;
     }
 }

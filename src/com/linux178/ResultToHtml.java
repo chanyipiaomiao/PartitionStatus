@@ -13,7 +13,7 @@ import org.apache.velocity.app.Velocity;
 class ResultToHtml implements WriteResult{
 
     @Override
-    public void writeResult(ArrayList<String> result_list) {
+    public String writeResult(ArrayList<String> result_list) {
 
         HashMap<String,PartitionInfo> normal_result = new HashMap<String, PartitionInfo>();
         HashMap<String,PartitionInfo> warn_result = new HashMap<String, PartitionInfo>();
@@ -29,6 +29,7 @@ class ResultToHtml implements WriteResult{
             }
         }
 
+        String result_html = null;
         try {
             VelocityEngine ve = new VelocityEngine();
             ve.setProperty(Velocity.INPUT_ENCODING,"UTF-8");
@@ -42,7 +43,7 @@ class ResultToHtml implements WriteResult{
             context.put("date", FunctionKit.getDate("yyyy-MM-dd"));
 
             String date = FunctionKit.getDate("yyyy-MM-dd_HHmmss");
-            String result_html = "result/" + date + ".html";
+            result_html = "result/" + date + ".html";
             BufferedWriter writer = new BufferedWriter(
                     new OutputStreamWriter(new FileOutputStream(new File(result_html)),"UTF-8"));
             if (template != null){
@@ -53,5 +54,6 @@ class ResultToHtml implements WriteResult{
         } catch (IOException e){
             e.printStackTrace();
         }
+        return result_html;
     }
 }
