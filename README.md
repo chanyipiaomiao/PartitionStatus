@@ -4,13 +4,34 @@ PartitionStatus
 Java编写的用于获取腾讯云磁盘分区状态的小工具，可以生成Excel或者HTML.
 
 
+依赖
+===============
+
+* JDK1.6+
+
+
+目录说明
+===============
+
+> getPartitionStatus.jar  ---- 主程序
+
+> start.bat   ---- windows系统上运行主程序的脚本
+
+> start.sh   ---- Linux系统上运行主程序的脚本
+
+> conf      ---- 为配置文件目录
+
+> lib       ---- 依赖库文件目录
+
+> result    ---- 生成的结果存放目录
+
+
 最终效果
 ===============
 
 * Excel文件效果
 
 ![Excel](/demo/excel_demo.png)
-
 
 
 * html文件效果
