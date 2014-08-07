@@ -12,7 +12,7 @@
     <property name="classes.dir" value="bin"/>  
     <property name="output.dir" value="ant-out"/>
     <property name="scripts.dir" value="scripts"/>
-    <property name="jarname" value="getDiskUsage.jar"/>  
+    <property name="jarname" value="getDiskUsage.jar"/>
     <property name="mainclass" value="com.linux178.GetDiskStatus"/>
     <property name="orginal.conf.dir" value="conf"/>
     <property name="orginal.result.dir" value="result"/>
