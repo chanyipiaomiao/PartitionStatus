@@ -1,7 +1,13 @@
 PartitionStatus
 ===============
 
-Java编写的用于获取磁盘分区状态的小工具，可以生成Excel或者HTML.
+Java编写的用于获取Linux系统上磁盘分区状态的小工具，可以生成Excel或者HTML文件
+
+
+运行环境
+===============
+
+* Windows,Linux,Unix 皆可运行
 
 
 依赖
