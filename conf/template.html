@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
+    <head >
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+        <title></title>
+        <style type="text/css">
+            * {
+                margin:0;
+                border:0;
+                padding:0;
+            }
+            div{
+                margin: 50px auto;
+            }
+            p{
+                text-align: center;
+                font-weight: bold;
+                font-size: 25px;
+            }
+            table {
+                margin: 20px auto;
+                border: solid 1px black;
+                border-collapse: collapse;
+            }
+            #left {
+                text-align: left;
+            }
+            td {
+                border: solid 1px black;
+                text-align: center;
+                font-family: arial, 'Hiragino Sans GB', 'Microsoft Yahei', '微软雅黑', '宋体';
+            }
+            .title{
+                font-weight: bold;
+            }
+            #red_backupground{
+                font-weight: bold;
+                background: red;
+            }
+            #green_backupground{
+                font-weight: bold;
+                background: green;
+            }
+        </style>
+    </head>
+    #set($cow_title = "<tr class='title'>
+        <td>IP地址</td>
+        <td>挂载点</td>
+        <td>总大小</td>
+        <td>已使用大小</td>
+        <td>剩余大小</td>
+        <td>已使用百分比</td>
+    </tr>")
+    #macro(loophashmap $hashmap)
+        #foreach( $ip in $hashmap.keySet())
+        <tr class="content">
+            #set( $partitionInfo = $hashmap.get($ip) )
+            <td id="left">$ip</td>
+            <td>${partitionInfo.partition}</td>
+            <td>${partitionInfo.total}</td>
+            <td>${partitionInfo.used}</td>
+            <td>${partitionInfo.free}</td>
+            <td>${partitionInfo.used_percent}</td>
+        </tr>
+        #end
+    #end
+    <body>
+        <div class="main">
+            <p>$date 磁盘分区状态</p>
+            #if( $warn_result.size() != 0 )
+                <table>
+                    <tr><td id="red_backupground" colspan="7">警告</td></tr>
+                    $cow_title
+                    #loophashmap($warn_result)
+                </table>
+            #end
+            <table>
+                <tr><td id="green_backupground" colspan="7">正常</td></tr>
+                $cow_title
+                #loophashmap($normal_result)
+            </table>
+        </div>
+    </body>
+</html>
