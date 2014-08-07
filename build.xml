@@ -1,4 +1,4 @@
-<project default="jar" name="getDiskUsage">
+<project default="jar" name="getPartitionStatus">
     <!-- 工程目录结构  
     project  
         |-bin  
@@ -12,8 +12,8 @@
     <property name="classes.dir" value="bin"/>  
     <property name="output.dir" value="ant-out"/>
     <property name="scripts.dir" value="scripts"/>
-    <property name="jarname" value="getDiskUsage.jar"/>
-    <property name="mainclass" value="com.linux178.GetDiskStatus"/>
+    <property name="jarname" value="getPartitionStatus.jar"/>
+    <property name="mainclass" value="com.linux178.GetPartitionStatus"/>
     <property name="orginal.conf.dir" value="conf"/>
     <property name="orginal.result.dir" value="result"/>
     <property name="result.dir" location="${output.dir}/${orginal.result.dir}"/>

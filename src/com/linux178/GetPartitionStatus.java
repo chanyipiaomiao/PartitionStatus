@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 
-public class GetDiskStatus {
+public class GetPartitionStatus {
 
     public static void main(String args[]){
 
