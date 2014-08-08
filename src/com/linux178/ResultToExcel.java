@@ -101,11 +101,9 @@ class ResultToExcel implements WriteResult {
             writableWorkbook.write();
             writableWorkbook.close();
         } catch (IOException e){
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         } catch (WriteException e){
-            e.printStackTrace();
-        } catch (NullPointerException e){
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
         return file_name;
     }

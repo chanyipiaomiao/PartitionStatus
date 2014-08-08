@@ -10,7 +10,7 @@ public class GetPartitionStatus {
     public static void main(String args[]){
 
         long start_time = System.currentTimeMillis();
-        System.out.println("正在执行命令,并生成阁下想要的文件,请稍等 ...");
+        System.out.println("正在执行命令,并生成文件,请稍等 ...");
 
         //读取配置文件信息
         Properties properties = GetConfigure.getConfigureFromPropertiesFile();
@@ -40,7 +40,9 @@ public class GetPartitionStatus {
         ConnectServer.setFaild_list(faild_list);
 
         int ip_list_size = ip_list.size();
-        int exec_count = 0;   //执行的次数
+
+        //执行的次数，当循环的次数大于3次就退出本程序，一般1~2次就能获取到全部的结果
+        int exec_count = 0;
 
         do {
 

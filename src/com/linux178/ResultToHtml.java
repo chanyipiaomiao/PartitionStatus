@@ -52,7 +52,7 @@ class ResultToHtml implements WriteResult{
             writer.flush();
             writer.close();
         } catch (IOException e){
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
         return result_html;
     }

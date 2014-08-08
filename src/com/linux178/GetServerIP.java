@@ -23,13 +23,13 @@ class GetServerIP {
                 ip_list.add(line);
             }
         } catch (IOException e){
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         } finally {
             if (reader != null){
                 try {
                     reader.close();
                 } catch (IOException ex){
-                    ex.printStackTrace();
+                    System.out.println(ex.getMessage());
                 }
             }
         }

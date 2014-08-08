@@ -30,7 +30,7 @@ class MutilThread {
         try {
             wait_thread_run_end.await();
         } catch (InterruptedException e){
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 }

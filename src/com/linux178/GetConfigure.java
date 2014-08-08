@@ -18,9 +18,9 @@ class GetConfigure {
              properties.load(fileInputStream);
              fileInputStream.close();
          } catch (FileNotFoundException e){
-             e.printStackTrace();
-         } catch (IOException ex){
-             ex.printStackTrace();
+             System.out.println(e.getMessage());
+         } catch (IOException e){
+             System.out.println(e.getMessage());
          }
          return properties;
      }

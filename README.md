@@ -43,6 +43,10 @@ Java编写的用于获取Linux系统上磁盘分区状态的小工具，可以�
 
 * 所有主机的用户名和密码需相同
 
+* 把所有的IP写入conf/servers_ip.txt,也可以在conf/configure.properties中指定
+
+* 用户名和密码在conf/configure.properties中指定
+
 
 最终效果
 ===============
