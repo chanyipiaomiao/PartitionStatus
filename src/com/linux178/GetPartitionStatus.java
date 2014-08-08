@@ -10,6 +10,7 @@ public class GetPartitionStatus {
     public static void main(String args[]){
 
         long start_time = System.currentTimeMillis();
+        System.out.println("正在执行命令,并生成阁下想要的文件,请稍等 ...");
 
         //读取配置文件信息
         Properties properties = GetConfigure.getConfigureFromPropertiesFile();
@@ -37,8 +38,10 @@ public class GetPartitionStatus {
         ArrayList<String> faild_list = new ArrayList<String>();
         ConnectServer.setResult_list(result_list);
         ConnectServer.setFaild_list(faild_list);
+
         int ip_list_size = ip_list.size();
         int exec_count = 0;   //执行的次数
+
         do {
 
             exec_count++;
@@ -57,8 +60,16 @@ public class GetPartitionStatus {
                     WriteResult writeResult = new ResultToHtml();
                     writeResult.writeResult(result_list);
                 } else if (excel_html == 1){
+                    ResultToExcel.setResult_file(properties.getProperty("filename"));
+                    ResultToExcel.setContent_title(properties.getProperty("content_title"));
+                    ResultToExcel.setWarn_percent(Integer.parseInt(properties.getProperty("warn_percent")));
                     WriteResult writeResult = new ResultToExcel();
-                    writeResult.writeResult(result_list);
+                    String excel_name = writeResult.writeResult(result_list);
+                    if (! FunctionKit.checkFileSizeIsZero(excel_name)){
+                        System.out.println("生成的Excel失败，程序自动再次尝试生成!!!");
+                        result_list.clear();
+                        continue;
+                    }
                 } else {
                     System.out.println("你的配置有误吧!!!");
                 }

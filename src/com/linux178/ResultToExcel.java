@@ -66,7 +66,7 @@ class ResultToExcel implements WriteResult {
             sheet.addCell(new Label(0,0,title,title_format));
 
             //第一行 至 第二行 合并
-            sheet.mergeCells(0,0,6,1);
+            sheet.mergeCells(0,0,5,1);
 
             //设置当百分比大于90%时单元格的背景为红色以示提醒
             WritableCellFormat percent_cell_format = new WritableCellFormat();
@@ -78,30 +78,25 @@ class ResultToExcel implements WriteResult {
             sheet.addCell(new Label(3,2,"已使用大小"));
             sheet.addCell(new Label(4,2,"剩余大小"));
             sheet.addCell(new Label(5,2,"已使用百分比"));
-            sheet.addCell(new Label(6,2,"连接状态"));
 
             //循环添加单元格内容
             int current_row = 3;
             for (String result : result_list){
                 String[] result_array  = result.split("\\s+");
-                if (result_array.length == 7){
-                    for (int col = 0; col <=6 ; col++) {
-                        if (col == 5){
-                            String percent = result_array[col];
-                            int percent_int = Integer.parseInt(percent.substring(0,percent.indexOf("%")));
-                            if (percent_int > warn_percent){
-                                sheet.addCell(new Label(col,current_row,result_array[col],percent_cell_format));
-                            } else {
-                                sheet.addCell(new Label(col,current_row,result_array[col]));
-                            }
+                for (int col = 0; col <=5 ; col++) {
+                    if (col == 5){
+                        String percent = result_array[col];
+                        int percent_int = Integer.parseInt(percent.substring(0,percent.indexOf("%")));
+                        if (percent_int > warn_percent){
+                            sheet.addCell(new Label(col,current_row,result_array[col],percent_cell_format));
                         } else {
                             sheet.addCell(new Label(col,current_row,result_array[col]));
                         }
+                    } else {
+                        sheet.addCell(new Label(col,current_row,result_array[col]));
                     }
-                    current_row++;
-                } else {
-                    System.out.println(result_array[0] + " 未获取到结果");
                 }
+                current_row++;
             }
             writableWorkbook.write();
             writableWorkbook.close();
