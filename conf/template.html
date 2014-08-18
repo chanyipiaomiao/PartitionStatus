@@ -43,6 +43,10 @@
                 font-weight: bold;
                 background: green;
             }
+            #yellow_backupground{
+                font-weight: bold;
+                background: yellow;
+            }
         </style>
     </head>
     #set($cow_title = "<tr class='title'>
@@ -68,14 +72,24 @@
     #end
     <body>
         <div class="main">
-            <p>$date 磁盘分区状态</p>
+            <p>$date 腾讯云 磁盘分区状态</p>
+
+            #if( $error_result.size() != 0 )
+            <table>
+                <tr><td id="red_backupground" colspan="7">严重</td></tr>
+                $cow_title
+                #loophashmap($error_result)
+            </table>
+            #end
+
             #if( $warn_result.size() != 0 )
                 <table>
-                    <tr><td id="red_backupground" colspan="7">警告</td></tr>
+                    <tr><td id="yellow_backupground" colspan="7">警告</td></tr>
                     $cow_title
                     #loophashmap($warn_result)
                 </table>
             #end
+
             <table>
                 <tr><td id="green_backupground" colspan="7">正常</td></tr>
                 $cow_title

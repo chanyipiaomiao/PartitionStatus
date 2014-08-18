@@ -17,19 +17,21 @@ class ResultToHtml implements WriteResult{
 
         HashMap<String,PartitionInfo> normal_result = new HashMap<String, PartitionInfo>();
         HashMap<String,PartitionInfo> warn_result = new HashMap<String, PartitionInfo>();
+        HashMap<String,PartitionInfo> error_result = new HashMap<String, PartitionInfo>();
         for (String item : result_list){
             String[] item_array  = item.split("\\s+");
             String percent = item_array[5];
             int percent_int = Integer.parseInt(percent.substring(0,percent.indexOf("%")));
-            if (percent_int >= 90){
-                warn_result.put(item_array[0],ArrayToPartitionInfo.arrayToPartition(item_array));
-
+            if (percent_int >= 90) {
+                error_result.put(item_array[0], ArrayToPartitionInfo.arrayToPartition(item_array));
+            } else if (percent_int >=80 && percent_int < 90){
+                warn_result.put(item_array[0], ArrayToPartitionInfo.arrayToPartition(item_array));
             } else {
                 normal_result.put(item_array[0],ArrayToPartitionInfo.arrayToPartition(item_array));
             }
         }
 
-        String result_html = null;
+        String result_html = "";
         try {
             VelocityEngine ve = new VelocityEngine();
             ve.setProperty(Velocity.INPUT_ENCODING,"UTF-8");
@@ -38,6 +40,7 @@ class ResultToHtml implements WriteResult{
             ve.init();
             Template template = ve.getTemplate("conf/template.html");
             VelocityContext context = new VelocityContext();
+            context.put("error_result",error_result);
             context.put("warn_result",warn_result);
             context.put("normal_result",normal_result);
             context.put("date", FunctionKit.getDate("yyyy-MM-dd"));

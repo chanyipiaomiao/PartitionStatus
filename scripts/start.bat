@@ -1,3 +1,3 @@
 @echo off
-java -jar getDiskUsage.jar
+java -jar getPartitionStatus.jar
 pause
