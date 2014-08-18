@@ -53,7 +53,7 @@ public class GetPartitionStatus {
 
             MutilThread.startMutilThread(ip_list);
             if (faild_list.size() > 10) {
-                System.out.println("看起来token是打开状态或者是网络出现问题了!!!");
+                System.out.println("看起来token是打开状态/网络出现问题/用户名和密码错误!!!");
                 break;
             }
 
@@ -62,7 +62,7 @@ public class GetPartitionStatus {
                     WriteResult writeResult = new ResultToHtml();
                     writeResult.writeResult(result_list);
                 } else if (excel_html == 1){
-                    ResultToExcel.setResult_file(properties.getProperty("filename"));
+                    ResultToExcel.setResult_file(properties.getProperty("filepath"));
                     ResultToExcel.setContent_title(properties.getProperty("content_title"));
                     ResultToExcel.setWarn_percent(Integer.parseInt(properties.getProperty("warn_percent")));
                     WriteResult writeResult = new ResultToExcel();

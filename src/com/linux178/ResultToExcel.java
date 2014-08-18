@@ -13,7 +13,7 @@ class ResultToExcel implements WriteResult {
 
     private static String result_file = "result/";
     private static int warn_percent = 90;
-    private static String content_title = "Disk Status";
+    private static String content_title = "Partition Status";
 
 
     public static void setResult_file(String result_file) {
