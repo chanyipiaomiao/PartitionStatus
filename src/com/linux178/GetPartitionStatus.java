@@ -59,6 +59,7 @@ public class GetPartitionStatus {
 
             if (ip_list_size == result_list.size()){
                 if (excel_html == 0){
+                    ResultToHtml.setResult_file(properties.getProperty("filepath"));
                     WriteResult writeResult = new ResultToHtml();
                     writeResult.writeResult(result_list);
                 } else if (excel_html == 1){

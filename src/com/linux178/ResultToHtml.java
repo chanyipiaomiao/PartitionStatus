@@ -12,6 +12,13 @@ import org.apache.velocity.app.Velocity;
 
 class ResultToHtml implements WriteResult{
 
+
+    private static String result_file = "result/";
+
+    public static void setResult_file(String result_file) {
+        ResultToHtml.result_file = result_file;
+    }
+
     @Override
     public String writeResult(ArrayList<String> result_list) {
 
@@ -46,7 +53,7 @@ class ResultToHtml implements WriteResult{
             context.put("date", FunctionKit.getDate("yyyy-MM-dd"));
 
             String date = FunctionKit.getDate("yyyy-MM-dd_HHmmss");
-            result_html = "result/" + date + ".html";
+            result_html = result_file + date + ".html";
             BufferedWriter writer = new BufferedWriter(
                     new OutputStreamWriter(new FileOutputStream(new File(result_html)),"UTF-8"));
             if (template != null){
