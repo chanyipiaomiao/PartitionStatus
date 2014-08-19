@@ -70,4 +70,4 @@ Java编写的用于多线程获取腾讯云Linux系统磁盘分区状态的小�
 
 * html文件效果
 
-![html](/demo/html_demo.jpg)
+![html](/demo/html_demo.png)
